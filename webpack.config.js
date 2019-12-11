@@ -4,13 +4,19 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
-  entry: ['webpack/hot/dev-server', './src/index.js'],
+  entry: ['webpack/hot/dev-server', './src/index.ts'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   module: {
     rules: [
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        loader: 'ts-loader',
+        options: { appendTsSuffixTo: [/\.vue$/] }
+      },
       {
         test: /\.jsx$/,
         exclude: /node_modules/,

@@ -12,9 +12,9 @@
     </div>
 </template>
 
-<script>
-import { reactive, toRefs } from '@vue/composition-api';
-export default {
+<script lang='ts'>
+import { createComponent, reactive, toRefs } from '@vue/composition-api';
+export default createComponent({
     setup() {
         const state = reactive({
             todo: '',
@@ -28,7 +28,7 @@ export default {
             }
         }
 
-        function removeItem(i) {
+        function removeItem(i: number) {
             state.todos.splice(i, 1)
         }
 
@@ -38,5 +38,5 @@ export default {
             removeItem
         };
     }
-};
+});
 </script>

@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script>
+<script lang='ts'>
 import Todo from './components/Todo.vue'
 
 export default {
