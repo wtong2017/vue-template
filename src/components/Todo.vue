@@ -1,32 +1,42 @@
 <template>
     <div>
         <div>Todo List</div>
-        <input type="text" v-model="todo">
+        <input type="text" v-model="todo" />
         <button @click="addItem">Add</button>
         <ul v-for="(todo, i) in todos" :key="i">
-            <li>{{ todo }}<button @click="removeItem(i)">Delete</button></li>
+            <li>
+                {{ todo }}
+                <button @click="removeItem(i)">Delete</button>
+            </li>
         </ul>
     </div>
 </template>
 
 <script>
+import { reactive, toRefs } from '@vue/composition-api';
 export default {
-    data() {
-        return {
+    setup() {
+        const state = reactive({
             todo: '',
             todos: ['hello', 'world']
-        }
-    },
-    methods: {
-        addItem() {
-            if (this.todo.length > 0) {
-                this.todos.push(this.todo)
-                this.todo = ''
+        });
+
+        function addItem() {
+            if (state.todo.length > 0) {
+                state.todos.push(state.todo)
+                state.todo = ''
             }
-        },
-        removeItem(i) {
-            this.todos.splice(i, 1)
         }
+
+        function removeItem(i) {
+            state.todos.splice(i, 1)
+        }
+
+        return {
+            ...toRefs(state),
+            addItem,
+            removeItem
+        };
     }
-}
+};
 </script>

@@ -23,6 +23,7 @@
     "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
+    "@vue/composition-api": "^0.3.4",
     "vue": "^2.6.10"
   }
 }
