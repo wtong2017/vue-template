@@ -4,10 +4,11 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
-  entry: ['webpack/hot/dev-server', './src/index.ts'],
-  output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js'
+  entry: ['./src/index.ts'],
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: './dist',
+    hot: true
   },
   module: {
     rules: [
@@ -38,5 +39,9 @@ module.exports = {
       template: 'src/index.html'
     }),
     new VueLoaderPlugin()
-  ]
+  ],
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: '[name].bundle.js'
+  }
 };
