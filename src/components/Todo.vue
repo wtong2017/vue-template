@@ -13,8 +13,8 @@
 </template>
 
 <script lang='ts'>
-import { createComponent, reactive, toRefs } from '@vue/composition-api';
-export default createComponent({
+import { reactive, toRefs } from 'vue';
+export default {
     setup() {
         const state = reactive({
             todo: '',
@@ -38,5 +38,5 @@ export default createComponent({
             removeItem
         };
     }
-});
+}
 </script>
