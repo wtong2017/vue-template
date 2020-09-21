@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
   entry: ['./src/index.ts'],
@@ -10,6 +10,16 @@ module.exports = {
     contentBase: './dist',
     hot: true
   },
+  resolve: {
+		extensions: ['.ts', '.js', '.vue', '.json'],
+		alias: {
+			// this isn't technically needed, since the default `vue` entry for bundlers
+			// is a simple `export * from '@vue/runtime-dom`. However having this
+			// extra re-export somehow causes webpack to always invalidate the module
+			// on the first HMR update and causes the page to reload.
+			'vue': '@vue/runtime-dom'
+		}
+	},
   module: {
     rules: [
       {
